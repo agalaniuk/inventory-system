@@ -1,0 +1,4 @@
+venv/
+__pycache__/
+*.pyc
+inventory.db  # Optional: exclude if you want a fresh DB on Fly
