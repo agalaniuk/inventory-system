@@ -1,0 +1,24 @@
+# fly.toml app configuration file generated for storage--inventory on 2025-02-26T13:00:52-06:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'storage--inventory'
+primary_region = 'sea'
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = false
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+[mounts]
+  source = "inventory_data"
+  destination = "/data"
