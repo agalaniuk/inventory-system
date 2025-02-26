@@ -3,7 +3,16 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField
 from wtforms.validators import DataRequired
-from sqlalchemy import or_, asc, desc, func  # Added func for case-insensitive sorting
+from sqlalchemy import or_, asc, desc, func
+import os
+
+# Initialize Flask app
+app = Flask(__name__)  # Define app first
+app.config['SECRET_KEY'] = 'your_secret_key_here'  # Replace with a secure key
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join('/data', 'inventory.db')  # Then configure
+db = SQLAlchemy(app)
+
+
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -116,4 +125,4 @@ def adjust_quantity(item_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True, host='0.0.0.0', port=5000)  # HTTP for now
+    app.run(debug=False, host='0.0.0.0', port=8080)  # Changed for Fly.io
