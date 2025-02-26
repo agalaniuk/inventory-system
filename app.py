@@ -7,9 +7,9 @@ from sqlalchemy import or_, asc, desc, func
 import os
 
 # Initialize Flask app
-app = Flask(__name__)  # Define app first
-app.config['SECRET_KEY'] = 'your_secret_key_here'  # Replace with a secure key
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join('/data', 'inventory.db')  # Then configure
+app = Flask(__name__)  # Must be first
+app.config['SECRET_KEY'] = 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6'  # Replace with a secure key
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join('/data', 'inventory.db')
 db = SQLAlchemy(app)
 
 
@@ -125,4 +125,4 @@ def adjust_quantity(item_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=False, host='0.0.0.0', port=8080)  # Changed for Fly.io
+    app.run(debug=False, host='0.0.0.0', port=8080)
